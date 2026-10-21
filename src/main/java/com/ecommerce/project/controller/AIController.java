@@ -1,10 +1,8 @@
 package com.ecommerce.project.controller;
 
+import com.ecommerce.project.payload.AIRequest;
 import com.ecommerce.project.service.AIService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/ai")
@@ -16,8 +14,13 @@ public class AIController {
         this.aiService = aiService;
     }
 
-    @GetMapping("/ask")
-    public String askAI(@RequestParam String message) {
-        return aiService.askAI(message);
+//    @GetMapping("/ask")
+//    public String askAI(@RequestParam String message) {
+//        return aiService.askAI(message);
+//    }
+
+    @PostMapping("/ask")
+    public String askAI(@RequestBody AIRequest request) {
+        return aiService.askAI(request.getMessage());
     }
 }
