@@ -258,5 +258,14 @@ public class ProductServiceImpl implements ProductService {
 		return modelMapper.map(updatedProduct, ProductDTO.class);
 	}
 
-	
+	@Override
+	public List<ProductDTO> getProductsForAI() {
+		List<Product> products = productRepository.findAll();
+
+		return products.stream()
+				.map(product -> modelMapper.map(product, ProductDTO.class))
+				.toList();
+	}
+
+
 }
